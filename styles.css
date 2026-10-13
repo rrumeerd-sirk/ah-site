@@ -1,3 +1,4 @@
+/* Updated: removed glow/shadows and removed button gradients as requested */
 :root {
   --bg: #f7f5f1;
   --panel: #ffffff;
@@ -7,7 +8,7 @@
   --text: #181b1d;
   --muted: #5f6764;
   --line: #e7e9e8;
-  --shadow: 0 10px 26px rgba(18, 30, 22, 0.08);
+  --shadow: none; /* removed glow */
   --radius: 18px;
 }
 
@@ -71,7 +72,7 @@ button {
   width: 42px;
   height: 42px;
   border-radius: 12px;
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  background: var(--primary); /* solid color instead of gradient for cleaner look */
   color: #fff;
   display: grid;
   place-items: center;
@@ -113,7 +114,7 @@ button {
   border-radius: 999px;
   padding: 0.82rem 1.35rem;
   font-weight: 700;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease; /* removed box-shadow from transitions */
 }
 
 .ghost-btn {
@@ -121,10 +122,11 @@ button {
   color: var(--text);
 }
 
+/* Buttons without gradient and without glow */
 .primary-btn {
-  background: linear-gradient(180deg, var(--primary), var(--primary-dark));
+  background: var(--primary); /* solid color */
   color: white;
-  box-shadow: 0 12px 20px rgba(19, 124, 69, 0.18);
+  box-shadow: none; /* removed glow */
 }
 
 .secondary-btn {
@@ -177,7 +179,7 @@ button {
   border: 1px solid var(--line);
   border-radius: 30px;
   padding: 40px 38px;
-  box-shadow: var(--shadow);
+  box-shadow: none; /* removed glow */
 }
 
 .eyebrow {
@@ -231,7 +233,7 @@ button {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--shadow);
+  box-shadow: none; /* removed glow */
   position: relative;
   overflow: hidden;
 }
@@ -307,7 +309,7 @@ button {
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 0.95rem 1.1rem;
-  box-shadow: var(--shadow);
+  box-shadow: none; /* removed glow */
 }
 
 .search-input input {
@@ -357,7 +359,7 @@ button {
   padding: 18px 10px 16px;
   text-align: center;
   min-height: 150px;
-  box-shadow: var(--shadow);
+  box-shadow: none; /* removed glow */
 }
 
 .category-card .icon {
@@ -382,7 +384,7 @@ button {
   border: 1px solid var(--line);
   border-radius: 22px;
   overflow: hidden;
-  box-shadow: var(--shadow);
+  box-shadow: none; /* removed glow */
 }
 
 .product-image {
@@ -441,6 +443,7 @@ button {
   padding: 0.7rem 1rem;
   border-radius: 999px;
   font-weight: 700;
+  box-shadow: none; /* removed glow */
 }
 
 .feature-banner {
@@ -449,7 +452,7 @@ button {
   background: linear-gradient(135deg, #dff7e5, #eefbf5);
   border: 1px solid var(--line);
   border-radius: 26px;
-  box-shadow: var(--shadow);
+  box-shadow: none; /* removed glow */
   padding: 30px 32px;
   display: flex;
   align-items: center;
