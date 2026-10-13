@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AH Zelfscan</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand" aria-label="AH Zelfscan">
+          <div class="logo">AH</div>
+          <div class="brand-text">
+            <strong>AH</strong>
+            <span>Zelfscan</span>
+          </div>
+        </div>
+        <button class="secondary-btn" type="button">Uitloggen</button>
+      </header>
+
+      <main class="layout">
+        <section class="scanner-panel card">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow">Handscanner</p>
+              <h1>Scan je producten</h1>
+            </div>
+            <div class="status-dot" aria-label="Scanner actief">●</div>
+          </div>
+
+          <label for="barcodeInput" class="input-label">Barcode of product</label>
+          <div class="scan-row">
+            <input
+              id="barcodeInput"
+              type="text"
+              inputmode="numeric"
+              autocomplete="off"
+              placeholder="Bijv. 8711600837094"
+              aria-label="Voer barcode in"
+            />
+            <button id="scanButton" type="button" class="primary-btn">Scan</button>
+          </div>
+
+          <div class="quick-actions" aria-label="Snelle producten">
+            <button class="chip" type="button" data-code="8711600837094">Banaan</button>
+            <button class="chip" type="button" data-code="8718307002415">Yoghurt</button>
+            <button class="chip" type="button" data-code="8718452503178">Melk</button>
+            <button class="chip" type="button" data-code="8712565007314">Appels</button>
+          </div>
+
+          <div id="statusMessage" class="status-message" aria-live="polite"></div>
+        </section>
+
+        <aside class="cart-panel card">
+          <div class="panel-head compact">
+            <div>
+              <p class="eyebrow">Winkelmand</p>
+              <h2>Mijn boodschappen</h2>
+            </div>
+            <span id="itemCount" class="count-pill">0 items</span>
+          </div>
+
+          <ul id="cartList" class="cart-list" aria-live="polite"></ul>
+
+          <div class="totals-box">
+            <div class="total-row">
+              <span>Subtotaal</span>
+              <strong id="subtotal">€0,00</strong>
+            </div>
+            <div class="total-row muted">
+              <span>Korting</span>
+              <strong id="discount">-€0,00</strong>
+            </div>
+            <div class="total-row total">
+              <span>Totaal</span>
+              <strong id="total">€0,00</strong>
+            </div>
+          </div>
+
+          <div class="promo-box">
+            <label for="promoCode">Kortingscode</label>
+            <div class="promo-row">
+              <input id="promoCode" type="text" placeholder="Bijv. AH10" />
+              <button id="applyPromo" type="button" class="secondary-btn">Toepassen</button>
+            </div>
+          </div>
+
+          <button id="checkoutButton" class="checkout-btn" type="button">Naar betalen</button>
+        </aside>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
