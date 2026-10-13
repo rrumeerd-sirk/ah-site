@@ -3,17 +3,55 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>AH Scan - Mockup</title>
+  <title>AH Kiosk — Cadeaukaart Inwisselen</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="scene">
-    <div class="device">
-      <div class="screen">
-        <button id="scanBtn" class="scan-btn" aria-label="Scanknop"></button>
+  <div class="kiosk-root">
+    <header class="top-banner" role="banner">
+      <div class="top-banner-inner">
+        <div class="banner-text">Verzilver je geactiveerde cadeaukaart hier!</div>
+        <div class="banner-steps">1. Scan je boodschappen &nbsp; • &nbsp; 2. Klik hier in de betaalstap</div>
       </div>
-    </div>
+    </header>
+
+    <main class="screen">
+      <div class="left-panel card">
+        <div class="welcome">Welkom bij<br/><strong>Albert Heijn</strong></div>
+        <div class="icons-row">
+          <div class="icon">
+            <div class="icon-graphic">📷</div>
+            <div class="icon-label">Scan</div>
+          </div>
+          <div class="icon">
+            <div class="icon-graphic">💳</div>
+            <div class="icon-label">Betalen</div>
+          </div>
+        </div>
+        <div class="left-footer">Gebruik de scanner of tik op betalen om verder te gaan.</div>
+      </div>
+
+      <div class="right-panel card blue">
+        <div class="voucher">
+          <div class="voucher-left">
+            <div class="voucher-value">€15,-</div>
+            <div class="voucher-sub">Actiekaart</div>
+          </div>
+          <div class="voucher-right">
+            <div class="voucher-cta">Verifieer hier je cadeaubon</div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bottom-strip">
+      <div class="bottom-inner">
+        <div class="promo">Schrijf je in en ontvang aanbiedingen</div>
+        <div class="small-print">© Albert Heijn — demo weergave</div>
+      </div>
+    </footer>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>

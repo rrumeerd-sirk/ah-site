@@ -1,14 +1,55 @@
-/* Minimal phone mockup — only a dark blue scan button as requested */
+/* Styles to match the kiosk photo layout and colors (approximation) */
 :root{
-  --bg:#000; /* black background like the sketch */
-  --device-white:#ffffff;
-  --device-border:#0b0b0b;
-  --scan-blue:#002db3; /* donker blauwe knop */
+  --bg:#f2f2f2;
+  --banner-green:#0b7a3a; /* deep green similar to AH promo header */
+  --banner-text:#ffffff;
+  --card-white:#ffffff;
+  --muted:#666;
+  --blue:#1680d6; /* bright blue for voucher */
+  --dark:#111;
+  --shadow: 0 12px 30px rgba(0,0,0,0.25);
 }
 *{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);}
-.scene{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
-.device{width:220px;height:440px;border-radius:28px;background:linear-gradient(180deg,var(--device-white),#fbfbfb);border:6px solid var(--device-border);box-shadow:0 20px 50px rgba(0,0,0,0.6)}
-.screen{position:relative;width:100%;height:100%;border-radius:20px;overflow:hidden;display:flex;align-items:flex-end;justify-content:center;padding:18px}
-.scan-btn{width:84%;height:54px;border-radius:12px;border:none;background:var(--scan-blue);box-shadow:0 8px 18px rgba(0,0,0,0.35);cursor:pointer}
-.scan-btn:focus{outline:3px solid rgba(0,45,179,0.18)}
+html,body{height:100%;margin:0;font-family:Arial,Helvetica,sans-serif;background:#222}
+.kiosk-root{width:100vw;height:100vh;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start}
+.top-banner{background:var(--banner-green);color:var(--banner-text);padding:20px 40px;}
+.top-banner-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.banner-text{font-weight:800;font-size:24px}
+.banner-steps{font-size:14px;opacity:0.95}
+
+.screen{flex:1;display:flex;align-items:center;justify-content:center;gap:36px;padding:36px}
+.card{background:var(--card-white);border-radius:8px;box-shadow:var(--shadow);padding:28px}
+.left-panel{width:520px;height:420px;display:flex;flex-direction:column;justify-content:space-between}
+.right-panel{width:680px;height:420px;display:flex;align-items:center;justify-content:center}
+.right-panel.blue{background:linear-gradient(180deg,var(--blue),#0f67ad);color:white}
+
+.welcome{font-size:28px;font-weight:700;color:var(--dark);line-height:1.05}
+.icons-row{display:flex;gap:24px;margin-top:18px}
+.icon{display:flex;flex-direction:column;align-items:center;gap:8px}
+.icon-graphic{width:110px;height:110px;border-radius:8px;background:#f4f6f8;display:grid;place-items:center;font-size:44px;box-shadow:0 8px 20px rgba(0,0,0,0.12)}
+.icon-label{font-weight:700;color:var(--muted)}
+.left-footer{font-size:13px;color:var(--muted);margin-top:8px}
+
+.voucher{display:flex;align-items:center;justify-content:space-between;width:100%;height:86%;padding:28px;border-radius:8px;background:rgba(255,255,255,0.04)}
+.voucher-left{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.voucher-value{font-size:56px;font-weight:900}
+.voucher-sub{opacity:0.95;font-weight:700}
+.voucher-right{display:flex;align-items:center;justify-content:center}
+.voucher-cta{background:rgba(255,255,255,0.12);padding:18px 28px;border-radius:10px;font-weight:800}
+
+.bottom-strip{background:#fff;padding:14px 40px;border-top:1px solid #e6e6e6}
+.bottom-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.promo{font-weight:800}
+.small-print{color:#777;font-size:13px}
+
+/* Large-screen kiosk look: center on dark background */
+@media (max-width:1300px){
+  .top-banner-inner,.bottom-inner{padding:0 18px}
+  .left-panel{width:44vw}
+  .right-panel{width:52vw}
+}
+@media (max-width:900px){
+  .screen{flex-direction:column}
+  .left-panel,.right-panel{width:90%;height:auto}
+  .voucher{height:240px}
+}

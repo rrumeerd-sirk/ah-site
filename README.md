@@ -1,22 +1,14 @@
-# ah-zelfscan
+# AH Kiosk — Cadeaukaart Inwisselen (Demo)
 
-Een simpele HTML-versie van de AH Zelfscan handscanner.
+Dit project vervangt de repository inhoud met een eenvoudige, statische webpagina die het scherm op de foto nabootst: een groene topbanner met instructie en twee grote panelen — links een welkom-paneel en rechts een blauwe voucher-paneel.
 
-## Starten
+Bestanden
+- index.html — hoofdpagina
+- styles.css — styling
+- script.js — lichte interactie
 
-Open `index.html` in je browser.
+Openen
+- Open `index.html` in de browser (of serveer met een eenvoudige HTTP-server).
 
-## Functies
-
-- Producten scannen via barcode
-- Snelle productknoppen
-- Winkelmand met totaal en korting
-- Kortingscodes zoals `AH10` en `SPRING`
-- Responsief ontwerp voor mobiel en desktop
-
-## Projectstructuur
-
-- `index.html` – pagina-opbouw
-- `styles.css` – styling
-- `script.js` – scannerlogica en winkelmand
-
+Opmerking
+- Dit is een visuele recreatie van de foto; logo's en exacte afbeeldingen zijn gerepresenteerd met tekst/kleuren om auteursrechtelijk gevoelige assets te vermijden.
