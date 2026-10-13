@@ -1,356 +1,199 @@
 <!doctype html>
 <html lang="nl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AH Kiosk</title>
-  <style>
-    :root {
-      --green: #0d7b41;
-      --green-2: #0a6a37;
-      --blue: #1a7ad0;
-      --blue-2: #0d6ab8;
-      --white: #ffffff;
-      --text: #101010;
-      --muted: #5a5a5a;
-      --bg: #0a0a0a;
-      --soft: #f2f2f2;
-    }
-
-    * { box-sizing: border-box; }
-
-    html, body {
-      margin: 0;
-      width: 100%;
-      height: 100%;
-      background: var(--bg);
-      font-family: Arial, Helvetica, sans-serif;
-      overflow: hidden;
-    }
-
-    body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #000;
-    }
-
-    .frame {
-      width: 100vw;
-      height: 100vh;
-      background: #000;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .frame::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.18), rgba(0,0,0,0.16));
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .kiosk {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      z-index: 2;
-    }
-
-    .topbar {
-      background: var(--green);
-      color: #fff;
-      height: 92px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 30px;
-      box-shadow: inset 0 -1px 0 rgba(255,255,255,0.18);
-      flex-shrink: 0;
-    }
-
-    .topbar-inner {
-      width: 100%;
-      max-width: 1360px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      font-weight: 700;
-    }
-
-    .banner-text {
-      font-size: clamp(1.7rem, 2vw, 2.7rem);
-      letter-spacing: -0.04em;
-      white-space: nowrap;
-    }
-
-    .banner-steps {
-      font-size: clamp(1rem, 1.2vw, 1.35rem);
-      opacity: 0.95;
-      white-space: nowrap;
-    }
-
-    .content {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 32px;
-      padding: 22px 34px 18px;
-    }
-
-    .panel {
-      position: relative;
-      background: rgba(255,255,255,0.96);
-      border-radius: 12px;
-      box-shadow: 0 18px 28px rgba(0,0,0,0.22);
-      overflow: hidden;
-    }
-
-    .left-panel {
-      width: 420px;
-      height: 430px;
-      padding: 24px 22px 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background: rgba(255,255,255,0.97);
-    }
-
-    .welcome {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: #1e1e1e;
-      line-height: 1.1;
-      margin-top: 6px;
-      letter-spacing: -0.02em;
-    }
-
-    .welcome strong {
-      display: block;
-      font-size: 2.1rem;
-      margin-top: 8px;
-      letter-spacing: -0.05em;
-    }
-
-    .icons {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      margin-top: 10px;
-    }
-
-    .icon-box {
-      width: 150px;
-      height: 150px;
-      border-radius: 12px;
-      background: #f9fafb;
-      border: 1px solid rgba(0,0,0,0.04);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #1b1b1b;
-      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.02);
-      font-size: 3.1rem;
-      position: relative;
-    }
-
-    .icon-box::after {
-      content: attr(data-label);
-      position: absolute;
-      bottom: -24px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: #3c3c3c;
-    }
-
-    .left-foot {
-      color: #5d5d5d;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-top: 26px;
-    }
-
-    .right-panel {
-      width: 720px;
-      height: 430px;
-      background: linear-gradient(180deg, var(--blue), var(--blue-2));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 30px 28px;
-      position: relative;
-    }
-
-    .voucher-card {
-      width: 100%;
-      height: 100%;
-      background: rgba(255,255,255,0.03);
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.12);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 28px 30px;
-      color: white;
-    }
-
-    .voucher-amount {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .voucher-amount .amount {
-      font-size: clamp(3.4rem, 4vw, 5.1rem);
-      font-weight: 900;
-      line-height: 0.9;
-      letter-spacing: -0.06em;
-    }
-
-    .voucher-amount .label {
-      font-size: clamp(1rem, 1.6vw, 1.4rem);
-      font-weight: 700;
-      opacity: 0.98;
-    }
-
-    .voucher-action {
-      padding: 18px 28px;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.12);
-      font-size: clamp(1.2rem, 1.6vw, 2rem);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      max-width: 330px;
-      text-align: center;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
-    }
-
-    .footer-strip {
-      height: 78px;
-      background: rgba(255,255,255,0.96);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 26px;
-      border-top: 1px solid rgba(0,0,0,0.08);
-      flex-shrink: 0;
-    }
-
-    .footer-inner {
-      width: 100%;
-      max-width: 1360px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      font-weight: 700;
-      color: #1d1d1d;
-    }
-
-    .footer-inner .promo {
-      font-size: 1.1rem;
-    }
-
-    .footer-inner .meta {
-      font-size: 0.9rem;
-      color: #555;
-    }
-
-    @media (max-width: 1100px) {
-      .content {
-        gap: 20px;
-        padding: 18px 20px 20px;
-      }
-
-      .left-panel {
-        width: 34vw;
-        min-width: 280px;
-      }
-
-      .right-panel {
-        width: 52vw;
-        min-width: 360px;
-      }
-    }
-
-    @media (max-width: 860px) {
-      html, body { overflow: auto; }
-      .topbar {
-        height: auto;
-        padding: 14px 18px;
-      }
-      .topbar-inner {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .banner-text, .banner-steps { white-space: normal; }
-      .content {
-        flex-direction: column;
-        padding: 20px 14px 26px;
-      }
-      .left-panel, .right-panel {
-        width: min(92vw, 500px);
-        height: auto;
-      }
-      .left-panel { min-height: 280px; }
-      .icons { justify-content: center; }
-      .voucher-card { flex-direction: column; gap: 22px; }
-      .voucher-action { max-width: 100%; width: 100%; }
-      .footer-inner { flex-direction: column; align-items: flex-start; }
-    }
-  </style>
-</head>
-<body>
-  <div class="frame">
-    <div class="kiosk">
-      <header class="topbar">
-        <div class="topbar-inner">
-          <div class="banner-text">Verzilver je geactiveerde cadeaukaart hier!</div>
-          <div class="banner-steps">1. Scan je boodschappen &nbsp;•&nbsp; 2. Klik hier in de betaalstap</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Groene Markt</title>
+    <meta name="description" content="Functionele AH-stijl webshop homepage" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <div class="brand-wrap">
+          <div class="brand-mark" aria-label="Brand mark">GM</div>
+          <div class="brand-text">Groene Markt</div>
         </div>
-      </header>
 
-      <main class="content">
-        <section class="panel left-panel">
-          <div>
-            <div class="welcome">Welkom bij<br><strong>Albert Heijn</strong></div>
-          </div>
+        <nav class="main-nav" aria-label="Hoofdnavigatie">
+          <a href="#">Boeken</a>
+          <a href="#">Winkelen</a>
+          <a href="#">Acties</a>
+          <a href="#">Klantenservice</a>
+        </nav>
 
-          <div class="icons">
-            <div class="icon-box" data-label="Scan">📷</div>
-            <div class="icon-box" data-label="Betalen">💳</div>
-          </div>
+        <div class="top-actions">
+          <button class="ghost-btn">Inloggen</button>
+          <button class="primary-btn">Winkelmand</button>
+        </div>
+      </div>
+    </header>
 
-          <div class="left-foot">Gebruik de scanner of tik op betalen om verder te gaan.</div>
-        </section>
+    <main>
+      <section class="promo-strip">
+        <div class="container promo-strip-inner">
+          <span>Gratis bezorging boven €25</span>
+          <span>Nieuwe acties</span>
+          <span>Veelgestelde vragen</span>
+        </div>
+      </section>
 
-        <section class="panel right-panel">
-          <div class="voucher-card">
-            <div class="voucher-amount">
-              <div class="amount">€15,-</div>
-              <div class="label">Actiekaart</div>
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <span class="eyebrow">Voor jou</span>
+            <h1>Alles wat je nodig hebt voor een fijne week.</h1>
+            <p>Ontdek maaltijden, huishoudelijke spullen en dagelijkse essentials met slimme aanbiedingen.</p>
+            <div class="hero-actions">
+              <button class="primary-btn large">Shop nu</button>
+              <button class="secondary-btn large">Bekijk aanbiedingen</button>
             </div>
-            <div class="voucher-action">Verifieer hier je cadeaubon</div>
           </div>
-        </section>
-      </main>
 
-      <footer class="footer-strip">
-        <div class="footer-inner">
-          <div class="promo">Schrijf je in en ontvang aanbiedingen</div>
-          <div class="meta">© Albert Heijn — demo weergave</div>
+          <div class="hero-visual" aria-label="Actie voorbeeld">
+            <div class="basket-card">
+              <div class="basket-badge">Vandaag</div>
+              <div class="basket-price">€15,-</div>
+              <div class="basket-label">actieprijs</div>
+            </div>
+          </div>
         </div>
-      </footer>
-    </div>
-  </div>
-</body>
+      </section>
+
+      <section class="search-block">
+        <div class="container search-wrap">
+          <label class="search-input" for="searchProduct">
+            <span>🔍</span>
+            <input id="searchProduct" type="text" placeholder="Zoek producten, categorieën of merken" />
+          </label>
+          <button class="primary-btn">Zoeken</button>
+        </div>
+      </section>
+
+      <section class="categories container">
+        <div class="section-head">
+          <h2>Populaire categorieën</h2>
+          <a href="#">Bekijk alles</a>
+        </div>
+
+        <div class="category-grid">
+          <article class="category-card">
+            <div class="icon">🥬</div>
+            <h3>Groente & fruit</h3>
+          </article>
+          <article class="category-card">
+            <div class="icon">🥖</div>
+            <h3>Bakkerij</h3>
+          </article>
+          <article class="category-card">
+            <div class="icon">🥛</div>
+            <h3>Zuivel</h3>
+          </article>
+          <article class="category-card">
+            <div class="icon">🍞</div>
+            <h3>Ontbijt</h3>
+          </article>
+          <article class="category-card">
+            <div class="icon">🧼</div>
+            <h3>Huishouden</h3>
+          </article>
+          <article class="category-card">
+            <div class="icon">🧴</div>
+            <h3>Beauty</h3>
+          </article>
+        </div>
+      </section>
+
+      <section class="offers container">
+        <div class="section-head">
+          <h2>Acties van de week</h2>
+          <a href="#">Meer acties</a>
+        </div>
+
+        <div class="product-grid">
+          <article class="product-card">
+            <div class="product-image product-1"></div>
+            <div class="product-body">
+              <div class="product-tag">-25%</div>
+              <h3>Aardbeien</h3>
+              <p>Verse Nederlandse aardbeien</p>
+              <div class="product-row">
+                <strong>€2,49</strong>
+                <button>Toevoegen</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image product-2"></div>
+            <div class="product-body">
+              <div class="product-tag">Nieuw</div>
+              <h3>Yoghurt</h3>
+              <p>Naturel en bio</p>
+              <div class="product-row">
+                <strong>€3,99</strong>
+                <button>Toevoegen</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image product-3"></div>
+            <div class="product-body">
+              <div class="product-tag">-30%</div>
+              <h3>Avocado</h3>
+              <p>Rijp en zacht</p>
+              <div class="product-row">
+                <strong>€1,89</strong>
+                <button>Toevoegen</button>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-image product-4"></div>
+            <div class="product-body">
+              <div class="product-tag">Top</div>
+              <h3>Ontbijtbox</h3>
+              <p>Gezonde start van de dag</p>
+              <div class="product-row">
+                <strong>€8,75</strong>
+                <button>Toevoegen</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="feature-banner container">
+        <div class="feature-copy">
+          <span>Nieuwe verzameling</span>
+          <h2>Maak je koelkast klaar voor de week.</h2>
+          <button class="primary-btn">Ontdek meer</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <div class="footer-brand">Groene Markt</div>
+          <p>Jouw dagelijkse supermarkt.</p>
+        </div>
+
+        <div class="footer-links">
+          <a href="#">Contact</a>
+          <a href="#">Veelgestelde vragen</a>
+          <a href="#">Privacy</a>
+          <a href="#">Voorwaarden</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
 </html>
+
