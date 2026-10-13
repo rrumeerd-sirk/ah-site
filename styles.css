@@ -1,14 +1,13 @@
-/* Updated: removed glow/shadows and removed button gradients as requested */
 :root {
   --bg: #f7f5f1;
   --panel: #ffffff;
-  --primary: #1f9d4f;
-  --primary-dark: #126b38;
+  --primary: #1d9d4a;
+  --primary-dark: #15773a;
   --accent: #eaf5ee;
-  --text: #181b1d;
-  --muted: #5f6764;
-  --line: #e7e9e8;
-  --shadow: none; /* removed glow */
+  --text: #171a1d;
+  --muted: #5d6663;
+  --line: #e6e8e6;
+  --shadow: none;
   --radius: 18px;
 }
 
@@ -72,7 +71,7 @@ button {
   width: 42px;
   height: 42px;
   border-radius: 12px;
-  background: var(--primary); /* solid color instead of gradient for cleaner look */
+  background: var(--primary);
   color: #fff;
   display: grid;
   place-items: center;
@@ -114,19 +113,18 @@ button {
   border-radius: 999px;
   padding: 0.82rem 1.35rem;
   font-weight: 700;
-  transition: transform 0.2s ease; /* removed box-shadow from transitions */
+  transition: transform 0.2s ease;
 }
 
 .ghost-btn {
-  background: #f0f4f2;
+  background: #edf1ef;
   color: var(--text);
 }
 
-/* Buttons without gradient and without glow */
 .primary-btn {
-  background: var(--primary); /* solid color */
+  background: var(--primary);
   color: white;
-  box-shadow: none; /* removed glow */
+  box-shadow: none;
 }
 
 .secondary-btn {
@@ -149,7 +147,7 @@ button {
 }
 
 .promo-strip {
-  background: #eef7f1;
+  background: #edf8f0;
   border-bottom: 1px solid var(--line);
 }
 
@@ -175,17 +173,17 @@ button {
   grid-template-columns: 1.15fr 0.85fr;
   align-items: center;
   gap: 32px;
-  background: linear-gradient(135deg, #eefdf3, #f7faf8);
+  background: #edf7f0;
   border: 1px solid var(--line);
   border-radius: 30px;
   padding: 40px 38px;
-  box-shadow: none; /* removed glow */
+  box-shadow: none;
 }
 
 .eyebrow {
   display: inline-block;
   padding: 0.42rem 0.85rem;
-  background: #def3e7;
+  background: #dfeee4;
   color: var(--primary-dark);
   border-radius: 999px;
   font-weight: 700;
@@ -226,14 +224,14 @@ button {
 .basket-card {
   width: min(100%, 340px);
   aspect-ratio: 1 / 1.1;
-  background: linear-gradient(180deg, #f2f7f3, #dfeee8);
+  background: #e8f2eb;
   border: 1px solid var(--line);
   border-radius: 26px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: none; /* removed glow */
+  box-shadow: none;
   position: relative;
   overflow: hidden;
 }
@@ -243,7 +241,7 @@ button {
   content: "";
   position: absolute;
   border-radius: 50%;
-  background: rgba(44, 157, 82, 0.12);
+  background: rgba(24, 138, 68, 0.12);
 }
 
 .basket-card::before {
@@ -309,7 +307,7 @@ button {
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 0.95rem 1.1rem;
-  box-shadow: none; /* removed glow */
+  box-shadow: none;
 }
 
 .search-input input {
@@ -359,7 +357,7 @@ button {
   padding: 18px 10px 16px;
   text-align: center;
   min-height: 150px;
-  box-shadow: none; /* removed glow */
+  box-shadow: none;
 }
 
 .category-card .icon {
@@ -384,7 +382,7 @@ button {
   border: 1px solid var(--line);
   border-radius: 22px;
   overflow: hidden;
-  box-shadow: none; /* removed glow */
+  box-shadow: none;
 }
 
 .product-image {
@@ -394,10 +392,10 @@ button {
   background-position: center;
 }
 
-.product-1 { background: linear-gradient(135deg, #dff7e5, #80d08c 55%, #48a15b); }
-.product-2 { background: linear-gradient(135deg, #eefcff, #b7e9f8 55%, #81c9db); }
-.product-3 { background: linear-gradient(135deg, #edffe8, #b9e4a4 55%, #81b359); }
-.product-4 { background: linear-gradient(135deg, #fff0d3, #f7c855 55%, #d99820); }
+.product-1 { background: #dff4e5; }
+.product-2 { background: #d9edf6; }
+.product-3 { background: #eaf7d8; }
+.product-4 { background: #f5ebbf; }
 
 .product-body {
   padding: 18px 18px 20px;
@@ -443,16 +441,16 @@ button {
   padding: 0.7rem 1rem;
   border-radius: 999px;
   font-weight: 700;
-  box-shadow: none; /* removed glow */
+  box-shadow: none;
 }
 
 .feature-banner {
   margin-top: 26px;
   margin-bottom: 50px;
-  background: linear-gradient(135deg, #dff7e5, #eefbf5);
+  background: #ebf7ee;
   border: 1px solid var(--line);
   border-radius: 26px;
-  box-shadow: none; /* removed glow */
+  box-shadow: none;
   padding: 30px 32px;
   display: flex;
   align-items: center;
